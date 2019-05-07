@@ -26,7 +26,7 @@ class Heap:
       self.storage.pop()
 
 
-      # implementation without _sift_down helper below
+      # iterative implementation without _sift_down helper below
 
       # i = 0
       # left = 2*i + 1
@@ -42,7 +42,7 @@ class Heap:
       #     i = right
       #     left = 2*i + 1
       #     right = 2*i + 2
-      
+
       # then sift down new first element to correct spot
       self._sift_down(0)
     
