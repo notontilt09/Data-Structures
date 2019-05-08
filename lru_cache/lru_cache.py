@@ -1,6 +1,13 @@
 class LRUCache:
   def __init__(self, limit=10):
-    pass
+    self.limit = limit
+    # a hash table for our key:value pairs
+    self.lookup = {}
+    # a hash table for our keys and when they were used
+    self.when_used = {}
+    # a number to keep track of when a key was used
+    self.num = 0
+    
 
   """
   Retrieves the value associated with the given key. Also
@@ -10,7 +17,16 @@ class LRUCache:
   key-value pair doesn't exist in the cache. 
   """
   def get(self, key):
-    pass
+    # if key exits
+    if key in self.lookup:
+      # update priority on key
+      self.when_used[key] = self.num
+      # increase priority counter
+      self.num += 1
+      return self.lookup[key]
+    # if key isn't in lookup table return none
+    else:
+      return None
 
   """
   Adds the given key-value pair to the cache. The newly-
@@ -23,4 +39,17 @@ class LRUCache:
   the newly-specified value. 
   """
   def set(self, key, value):
-    pass
+    # if no room in the lookup
+    if len(self.lookup) >= self.limit and key not in self.lookup.keys():
+      # find smallest number in when used and delete key from both dicts
+      oldest_value = min(self.when_used.values())
+      oldest_key = None
+      for i in self.when_used:
+        if self.when_used[i] == oldest_value:
+          oldest_key = i
+      self.lookup.pop(oldest_key)
+      self.when_used.pop(oldest_key)
+    # add new item to lookup and when_used, increase the priority counter
+    self.lookup[key] = value
+    self.when_used[key] = self.num
+    self.num += 1
