@@ -14,22 +14,31 @@ O(1)
 ## Binary Search Tree
 
 1. What is the runtime complexity of `insert`? 
+O(n)
 
 2. What is the runtime complexity of `contains`?
+Average runtime probably O(log n)
+Worst case O(n) if entire tree is one branch and target is the leaf.
 
 3. What is the runtime complexity of `get_max`? 
+if H is the height of the tree, runtime will be O(H)
 
 ## Heap
 
 1. What is the runtime complexity of `_bubble_up`?
+Worst case O(log n) if it has to climb to the top of the tree
 
 2. What is the runtime complexity of `_sift_down`?
+Worst case O(log n) if it has to sift to the bottom of the tree
 
 3. What is the runtime complexity of `insert`?
+O(log n) since it calls _bubble_up
 
 4. What is the runtime complexity of `delete`?
+O(log n) since it calls _sift_down
 
 5. What is the runtime complexity of `get_max`?
+O(1) simply grabs root value
 
 ## Doubly Linked List
 
