@@ -39,7 +39,7 @@ class LRUCache:
   the newly-specified value. 
   """
   def set(self, key, value):
-    # if no room in the lookup
+    # if no room in the lookup and key doesn't already exist
     if len(self.lookup) >= self.limit and key not in self.lookup.keys():
       # find smallest number in when used and delete key from both dicts
       oldest_value = min(self.when_used.values())
@@ -49,7 +49,7 @@ class LRUCache:
           oldest_key = i
       self.lookup.pop(oldest_key)
       self.when_used.pop(oldest_key)
-    # add new item to lookup and when_used, increase the priority counter
+    # add new item or overwrite item in lookup and when_used, increase the priority counter
     self.lookup[key] = value
     self.when_used[key] = self.num
     self.num += 1
