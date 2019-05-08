@@ -5,10 +5,6 @@ from avl_tree import Node
 class AVLTreeTests(unittest.TestCase):
   def setUp(self):
     self.tree = AVLTree()
-  
-  def test_display(self):
-    self.tree.node = Node(5)
-    self.tree.display()
 
   def test_update_height(self):
     self.assertEqual(self.tree.height, -1)
@@ -28,6 +24,8 @@ class AVLTreeTests(unittest.TestCase):
     self.tree.node.right.node.right = AVLTree(Node(8))
     self.tree.update_height()
     self.assertEqual(self.tree.height, 2)
+    # displaying tree here to check update_balance
+    self.tree.display()
 
   # def test_left_rotation(self):
   #   self.tree.node = Node(5)
