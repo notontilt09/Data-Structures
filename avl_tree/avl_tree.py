@@ -19,6 +19,12 @@ class AVLTree:
     self.height = -1
     self.balance = 0
 
+  # adding is_leaf method for display to work
+  def is_leaf(self):
+    if self.node.left or self.node.right:
+      return False
+    return True
+
   """
   Display the whole tree. Uses recursive def.
   """
@@ -38,7 +44,16 @@ class AVLTree:
   in the tree
   """
   def update_height(self):
-    pass
+    if self.node.left and self.node.right:
+      self.height = 1 + max(self.node.left.update_height(), self.node.right.update_height())
+    elif self.node.left:
+      self.height = 1 + self.node.left.update_height()
+    elif self.node.right:
+      self.height = 1 + self.node.right.update_height()
+    else:
+      self.height = 0
+    return self.height
+
 
   """
   Updates the balance factor on the AVLTree class
