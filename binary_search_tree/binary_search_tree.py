@@ -5,20 +5,19 @@ class BinarySearchTree:
     self.right = None
 
   def insert(self, value):
-    new_node = BinarySearchTree(value)
     # if value less than root put on left
     if value < self.value:
       # if nothing on left, set self.left to new BST
       if not self.left:
-        self.left = new_node
+        self.left = BinarySearchTree(value)
       # else perform insert method on self.left
       else:
         self.left.insert(value)
     # if value greater than root put on right
-    elif value > self.value:
+    else:
       # if nothing on right set self.right to new BST
       if not self.right:
-        self.right = new_node
+        self.right = BinarySearchTree(value)
       # else perform insert on node on right
       else:
         self.right.insert(value)
